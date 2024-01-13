@@ -1,0 +1,45 @@
+<!-- Existing login form -->
+<form id="loginForm" action="/login" method="post">
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <div id="usernameError" style="color: red; display: none;">Please enter a username</div>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <div id="passwordError" style="color: red; display: none;">Please enter a password</div>
+  </div>
+  <button type="submit" onclick="validateForm(event)" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Login</button>
+</form>
+<a href="/signup" style="text-decoration: none; color: #4CAF50; margin-right: 10px;">Sign Up</a>
+<a href="/forget.html" style="text-decoration: none; color: #4CAF50;">Forget Password</a>
+
+<script>
+  function validateForm(event) {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    let isValid = true;
+
+    if (username === '') {
+      document.getElementById('usernameError').style.display = 'block';
+      isValid = false;
+    } else {
+      document.getElementById('usernameError').style.display = 'none';
+    }
+
+    if (password === '') {
+      document.getElementById('passwordError').style.display = 'block';
+      isValid = false;
+    } else {
+      document.getElementById('passwordError').style.display = 'none';
+    }
+
+    if (!isValid) {
+      event.preventDefault(); // Prevent form submission if validation fails
+    } else {
+      window.location.href = '/home.html'; // Redirect to home page on successful login
+    }
+  }
+</script>
